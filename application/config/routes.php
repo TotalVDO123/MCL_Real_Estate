@@ -92,8 +92,19 @@ $route['live-tv/category'] 				= 'live_tv/category/$1';
 $route['live-tv/category/(:any)'] 		= 'live_tv/category/$1';
 $route['live-tv/(:any)'] 				= 'live_tv/watch/$1';
 $route['about-us'] 						= 'page/about_us';
+
+$route['privacy-policy'] 				= 'page/privacy_policy';
+
+$route['terms-and-condition'] 			= 'page/terms_and_condition';
+
+$route['web-accessibility'] 			= 'page/web_accessibility';
+
+
+
+
+
 $route['request-movies'] 				= 'home/request_movies';
-$route['privacy-policy'] 				= 'home/policy';
+//$route['privacy-policy'] 				= 'home/policy';
 $route['trailers'] 						= 'home/trailers';
 $route['request'] 						= 'home/request_for_movies';
 $route['dmca'] 							= 'home/dmca';

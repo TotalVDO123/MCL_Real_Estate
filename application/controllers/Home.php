@@ -62,7 +62,9 @@ class Home extends Home_Core_Controller {
 		*/
 		$data['title'] = 'Home';
 		$data['page_name']='home';
-		$this->load->view('theme/'.$this->active_theme.'/index',$data);
+		
+		$this->load->view('theme/'.$this->active_theme.'/home',$data);
+		///$this->load->view('theme/'.$this->active_theme.'/index',$data);
 	}
 	
 	public function ourstory() 

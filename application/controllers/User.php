@@ -6,8 +6,8 @@ if (!defined('BASEPATH'))
 class User extends Home_Core_Controller{
     public function __construct(){
         parent::__construct();
-        $this->load->library('google');
-        $this->load->library('facebook');
+        //$this->load->library('google');
+        //$this->load->library('facebook');
         /* cache control */
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
@@ -23,13 +23,17 @@ class User extends Home_Core_Controller{
 
     // login function
     public function login() {
+	
+		
         if ($this->session->userdata('login_status') == 1)
             redirect(base_url() . 'user/manage_profile', 'refresh');
         $data['page_name']      = 'signin';
         $data['title']          = 'Login';
 		
         //$data['facebook_login_url'] =  $this->facebook->login_url();        
-        $this->load->view('theme/'.$this->active_theme.'/index',$data);
+        //$this->load->view('theme/'.$this->active_theme.'/index',$data);
+		
+		$this->load->view('theme/'.$this->active_theme.'/signin',$data);
     }
 
     // signup function

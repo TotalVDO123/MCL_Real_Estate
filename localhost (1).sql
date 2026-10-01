@@ -21,8 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `jds120_mcl`
 --
-CREATE DATABASE IF NOT EXISTS `jds120_mcl` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `jds120_mcl`;
+
 
 -- --------------------------------------------------------
 

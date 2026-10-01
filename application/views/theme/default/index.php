@@ -1,380 +1,504 @@
-<?php    
-    $default_meta_description       =   ovoo_config('meta_description');
-    $default_focus_keyword          =   ovoo_config('focus_keyword');
-    $author                         =   ovoo_config('author');
-    $front_end_theme                =   ovoo_config('front_end_theme');
-    $theme_dir                      =   'theme/'.ovoo_config('active_theme').'/';
-    $assets_dir                     =   'assets/theme/'.ovoo_config('active_theme').'/';
-    $dark_theme                     =   ovoo_config('dark_theme');
-    $google_analytics_id            =   ovoo_config('google_analytics_id');       
-    $footer_templete                =   ovoo_config('footer_templete');
-    $share_this_enable              =   ovoo_config('social_share_enable');    
-    $push_notification_enable       =   ovoo_config('push_notification_enable');
-    $site_name                      =   ovoo_config('site_name');
-    $recaptcha_enable               =   ovoo_config('recaptcha_enable');  
-    $favicon                        =   ovoo_config('favicon');
-    $enable_ribbon                  =   ovoo_config('enable_ribbon');
-?>
 <!DOCTYPE html>
-<html lang="en">
-<head data-cast-api-enabled="true">
+<html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-<meta charset="UTF-8">
-<meta name="description" content="<?php if (isset($meta_description)) { echo $meta_description;} else{ echo $default_meta_description;} ?>" />
-<meta name="keywords" content="<?php if (isset($focus_keyword)) { echo $focus_keyword;} else{ echo $default_focus_keyword ; } ?>" />
-<meta name="author" content="<?php echo $author; ?>" />
-<link rel="canonical" href="<?php if(isset($canonical) && !empty($canonical)): echo $canonical; else: echo base_url(); endif; ?>">
-<?php if($page_name =='watch' || $page_name == 'watch_tv' || $page_name == 'blog_details'): ?>
-<meta property="og:locale" content="en_US" />
-<meta name="twitter:card" content="summary">
-<meta name="twitter:description" content="<?php echo $meta_description; ?>" />
-<meta name="twitter:title" content="<?php echo $og_title; ?>" />
-<meta property="og:title" content="<?php echo $og_title; ?>" />
-<meta property="og:url" content="<?php echo $og_url; ?>" />
-<meta property="og:type" content="movie" />
-<meta property="og:description" content="<?php echo $meta_description; ?>" />
-<meta property="og:image" content="<?php echo $og_image_url; ?>" />
-<?php endif; ?>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php if(isset($title) && !empty($title)): echo $title; else: echo $site_name; endif; ?></title>   
-<link rel="shortcut icon" href="<?php echo base_url('uploads/system_logo/').$favicon; ?>">
-<!-- Style Sheets -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/additional.css">
-<!-- Font Icons -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/ionicons.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/socicon-styles.css">
-<!-- Font Icons -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/hover-min.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/animate.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/styles.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/responsive.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/<?php echo $front_end_theme; ?>.css">
+<meta charset="utf-8">
+<title>MCL1</title>
+<!-- Stylesheets -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/favicon.png" type="image/x-icon">
 
+<!-- Color Themes -->
+<link id="theme-color-file" href="css/color-themes/default-theme.css" rel="stylesheet">
 
-<script src="<?php echo base_url($assets_dir); ?>js/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
-
-<!-- slider -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>swiper/css/swiper.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>swiper/css/custom.css">
-<?php if($page_name =='update_profile'): ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/theme/default/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<?php endif; ?>
-
-
-
-<?php if($page_name=='watch' || $page_name=='watch_tv'): ?>
-<link href="<?php echo base_url(); ?>assets/player/video-js-6.13.0/video-js.css" rel="stylesheet" type="text/css">
-<link href="<?php echo base_url(); ?>assets/player/plugins/videojs-mobile-ui/videojs-mobile-ui.css" rel="stylesheet" type="text/css">
-<!-- tube skin CSS -->
-<!-- <link href="<?php echo base_url(); ?>assets/player/plugins/tube-skin/videojs-tube.min.css" media="only screen and (min-width: 820px)" rel="stylesheet"/> -->
-<script src="<?php echo base_url(); ?>assets/player/video-js-6.13.0/video.min.js" crossorigin="anonymous"></script>
-<script src="<?php echo base_url(); ?>assets/player/plugins/videojs-mobile-ui/videojs-mobile-ui.min.js"></script>
-<!-- watermark CSS -->
-<link href="<?php echo base_url(); ?>assets/player/plugins/watermark/videojs-logo.min.css" rel="stylesheet">
-<!-- social share CSS -->
-<link href="<?php echo base_url(); ?>assets/player/plugins/videojs-share/videojs-share.css" rel="stylesheet">
-<!-- social share CSS -->
-<link href="<?php echo base_url(); ?>assets/player/plugins/videojs-seek-buttons/videojs-seek-buttons.css" rel="stylesheet">
-
-<!-- videojs-chromecast js -->
-<script src="<?php echo base_url(); ?>assets/player/plugins/silvermine-videojs-chromecast/silvermine-videojs-chromecast.min.js"></script>
-<!-- videojs-chromecast CSS -->
-<link href="<?php echo base_url(); ?>assets/player/plugins/silvermine-videojs-chromecast/silvermine-videojs-chromecast.css" rel="stylesheet">
-<!-- chromecast sdk -->
-<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-
-<?php if($page_name=='watch'): ?>
-    <!-- magnific popup -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/plugins/magnific-popup/dist/magnific-popup.css">
-<?php endif; ?>
-
-<?php endif; ?> 
-<?php if($page_name=='home' || $page_name=='live_tv' || $page_name=='watch_tv' || $page_name=='watch'): ?>
-<!-- owlcarousel -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/owl.carousel.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/owl-custom.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/owl.theme.default.min.css">
-<script src="<?php echo base_url($assets_dir); ?>js/owl.carousel.js"></script>
-<!-- owlcarousel -->
-<?php endif ?>
-
-<?php if($recaptcha_enable == '1'): ?>
-    <!-- reCAPTCHA JavaScript API -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-<?php endif; ?>
-
-<!-- typehead search  -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" media="all"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/auto-complete.css">
-<?php if($this->language_model->get_rtl_status()): ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/rtl.css">
-<?php endif; ?>
-<!-- typehead search  -->
-<?php if($dark_theme=='1'): ?>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/dark.css">
-<?php endif; ?>
-<style type="text/css">
-<?php if($front_end_theme =='blue'): ?>    
-        :root {
-            --swiper-theme-color: #0088cc;
-            --primary-color:#0088cc;
-            --secenday-color:#0088c0;
-          }
-<?php elseif($front_end_theme =='green'): ?>
-    :root {
-        --swiper-theme-color: #5DC560;
-        --primary-color:#5DC560;
-        --secenday-color:#5DC569;
-      }
-<?php elseif($front_end_theme =='red'): ?>
-    :root {
-        --swiper-theme-color: #ff0000;
-        --primary-color:#ff0000;
-        --secenday-color:#ff0009;
-      }
-<?php elseif($front_end_theme =='yellow'): ?>
-    :root {
-        --swiper-theme-color: #FDD922;
-        --primary-color:#FDD922;
-        --secenday-color:#FDD929;
-      }
-<?php elseif($front_end_theme =='purple'): ?>
-    :root {
-        --swiper-theme-color: #6d0eb1;
-        --primary-color:#6d0eb1;
-        --secenday-color:#6d0eb9;
-      }
-<?php else: ?>
-    :root {
-        --swiper-theme-color: #FDD922;
-        --primary-color:#FDD922;
-        --secenday-color:#0088c0;
-      }
-<?php endif; ?>
-    .owl-carousel .owl-next,.owl-carousel .owl-prev {
-        background-color: var(--primary-color);
-    }
-    a{
-        color:var(--primary-color);
-    }
-    a:hover{
-       color:var(--secenday-color); 
-    }
-    .vjs-chromecast-button .vjs-icon-placeholder {
-        width: 18px;
-        height: 18px;
-    }
-</style>
-<style type="text/css">
-    .ribbon {
-        <?php if($enable_ribbon == '0'): ?>
-            display: none;
-        <?php endif; ?>
-        width: 110px;
-        height: 80px;
-        overflow: hidden;
-        position: absolute;
-        background: url(<?php echo base_url($assets_dir); ?>images/lock.png);
-        background-repeat: no-repeat;
-        overflow: hidden;
-    }
-    .ribbon-top-right {
-      bottom: 0px;
-      left: 0px;
-    }
-    .tv-ribbon{
-        <?php if($enable_ribbon == '0'): ?>
-            display: none;
-        <?php endif; ?>
-        top: 10px;
-        left: 5px;
-        position: absolute;
-        z-index: 6;
-        padding: 2px 11px;
-        background-color: #ffe22e;
-        color: #383737;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        font-size: 14px;
-        font-weight: bold;
-    }
-    .modal-header{
-        background: var(--primary-color);
-        border-bottom: transparent;
-        color: #fff;
-    }
-    </style>
-<?php if($page_name =='price_plan'): ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url($assets_dir); ?>css/price_plan.css">
-<?php endif; ?>
-
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
-    <body>
-        <div id="wrapper">
-            <div id="main-content">            
-            <?php
-                $this->load->view($theme_dir .'header');            
-                if ($page_name == 'home')
-                    $this->load->view($theme_dir .'slider');
-                if ($page_name == 'home'): ?>
-                    <div class="container">
-                        <?php  if($share_this_enable =='1'):?>
-                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                        <div class="addthis_inline_share_toolbox_yl99 m-t-30 m-b-10" data-url="<?php echo base_url();?>" data-title="<?php if($page_name=='watch'){ echo $watch_videos->title;}else{ echo $title; } ?>"></div>
-                        <!-- Addthis Social tool -->
-                    <?php endif; ?>
-                    </div>
-            <?php endif; ?> 
 
-            <?php
-                $this->load->view($theme_dir.$page_name);
-                $this->load->view($theme_dir.'footer/'.$footer_templete);
-                $this->load->view($theme_dir.'movie_request');             
-            ?>
-        </div>
-    </div>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-    <!-- lazy image loading -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.plugins.min.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('.lazy').lazy({
-                effect: "fadeIn",
-                effectTime: 1000
-            });
-        });
-    </script>
-    <!-- end lazy image loading -->
-    <!--sweet alert2 JS -->
-    <link href="<?php echo base_url(); ?>assets/plugins/swal2/sweetalert2.min.css" rel="stylesheet">
-    <!-- END sweet alert2 JS -->
-    <!-- Scripts -->    
-    <script src="<?php echo base_url($assets_dir); ?>js/ovoo.js"></script>    
-    <script src="<?php echo base_url($assets_dir); ?>js/bootstrap.min.js"></script>
+<body class="hidden-bar-wrapper">
+<div class="page-wrapper"> 
+  
+  <!-- Main Header -->
+  <header class="main-header"> 
     
-    <?php if($google_analytics_id !='' && $google_analytics_id !=NULL && !empty($google_analytics_id)): ?>
-        <!-- Google analytics -->
-        <script>
-            (function(i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function() {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-            ga('create', '<?php echo $google_analytics_id; ?>', 'auto');
-            ga('send', 'pageview');
-        </script>
-        <!-- END Google analytics -->
-    <?php endif; ?>
+    <!-- Header Lower -->
+    <div class="header-lower">
+      <div class="auto-container">
+        <div class="inner-container d-flex justify-content-between align-items-center">
+          <div class="logo-box">
+            <div class="logo"><a href="index.php"><img src="images/logo.png" alt="" title=""></a></div>
+          </div>
+  
+          
+          <!-- Outer Box -->
+          <div class="outer-box d-flex align-items-center flex-wrap"> 
+ 
+         <div class="nav-outer d-flex align-items-center flex-wrap"> 
+            
+            <!-- Main Menu -->
+            <nav class="main-menu show navbar-expand-md">
+              <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+              </div>
+              <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+                <ul class="navigation clearfix">
+                  <li> <a href="#keyfeatures_section">Discover MCL</a></li>
+                  <li><a href="#pricing">14-Days Free Trial</a></li>
+                  <li><a href="#contact"> Contact</a></li>
+                  <li><div class="button-box"> <a href="login.php" class="theme-btn btn-style-one"><span class="txt">Login</span></a> </div></li>
+                </ul>
+              </div>
+            </nav>
+            <!-- Main Menu End--> 
+            
+          </div>
 
-    <?php  if($share_this_enable =='1'):?>
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d74b9dcfd76af7"></script>
-    <?php endif; ?>
-    <!--sweet alert2 JS -->
-    <script src="<?php echo base_url(); ?>assets/plugins/swal2/sweetalert2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var success_message = '<?php echo $this->session->flashdata('success'); ?>';
-            var error_message = '<?php echo $this->session->flashdata('error'); ?>';
-            if (success_message != '') {
-                swal('Success!',success_message,'success');
-            }
-            if (error_message != '') {
-                swal('Error!',error_message,'error');
-            }
-        });
-    </script>
-    <?php
-        if($push_notification_enable == '1'):
-        $onesignal_appid                    =   ovoo_config('onesignal_appid');    
-        $onesignal_actionmessage            =   ovoo_config('onesignal_actionmessage');    
-        $onesignal_acceptbuttontext         =   ovoo_config('onesignal_acceptbuttontext');    
-        $onesignal_cancelbuttontext         =   ovoo_config('onesignal_cancelbuttontext');    
-     ?>
-    <!-- oneSignal -->
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
-    <script>
-        var OneSignal = window.OneSignal || [];
-        OneSignal.push(["init", {
-            appId: "<?php echo $onesignal_appid; ?>",
-            subdomainName: 'push',
-            autoRegister: false,
-            promptOptions: {
-                /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
-                /* actionMessage limited to 90 characters */
-                actionMessage: "<?php echo $onesignal_actionmessage;?>",
-                /* acceptButtonText limited to 15 characters */
-                acceptButtonText: "<?php echo $onesignal_acceptbuttontext;?>",
-                /* cancelButtonText limited to 15 characters */
-                cancelButtonText: "<?php echo $onesignal_cancelbuttontext;?>"
-            }
-        }]);
-    </script>
-    <script>
-        function subscribe() {
-            // OneSignal.push(["registerForPushNotifications"]);
-            OneSignal.push(["registerForPushNotifications"]);
-            event.preventDefault();
-        }
-        function unsubscribe(){
-            OneSignal.setSubscription(true);
-        }
+            <!-- Button Box -->
+            
+            
+            <!-- Mobile Navigation Toggler -->
+            <div class="mobile-nav-toggler"><span class="icon flaticon-140-menu-3"></span></div>
+          </div>
+          <!-- End Outer Box --> 
+          
+        </div>
+      </div>
+    </div>
+    <!-- End Header Lower --> 
+    
+    <!-- Sticky Header  -->
+    <div class="sticky-header">
+      <div class="auto-container d-flex justify-content-between align-items-center flex-wrap"> 
+        <!-- Logo -->
+        <div class="logo"> <a href="index.php" title=""><img src="images/logo.png" alt="" title=""></a> </div>
+        
+        <!-- Main Menu -->
+        <nav class="main-menu"> 
+          <!--Keep This Empty / Menu will come through Javascript--> 
+        </nav>
+        <!-- Main Menu End--> 
+        
+        <!-- Mobile Navigation Toggler -->
+        <div class="mobile-nav-toggler"><span class="icon flaticon-140-menu-3"></span></div>
+      </div>
+    </div>
+    <!-- End Sticky Menu --> 
+    
+    <!-- Mobile Menu  -->
+    <div class="mobile-menu">
+      <div class="menu-backdrop"></div>
+      <div class="close-btn"><span class="icon flaticon-103-cancel-1"></span></div>
+      <nav class="menu-box">
+        <div class="nav-logo"><a href="index.php"><img src="images/logo.png" alt="" title=""></a></div>
+        <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+      </nav>
+    </div>
+    <!-- End Mobile Menu --> 
+    
+  </header>
+  <!-- End Main Header --> 
+  
+  <!-- Main Slider Section -->
+  <section class="main-slider">
+    <div class="pattern-one" style="background-image: url(images/main-slider/icons-layer.png)"></div>
+    <div class="main-slider-carousel owl-carousel owl-theme"> 
+      
+      <!-- Slide -->
+      <div class="slide">
+        <div class="auto-container">
+          <div class="row clearfix row-gap-3"> 
+            
+            <!-- Content Column -->
+            <div class="content-column col-xl-8 col-lg-8 col-md-12 col-sm-12">
+              <div class="inner-column">
+                <div class="shadow-layer" style="background-image: url(images/main-slider/shadow-layer-1.png)"></div>
+                <h1>The Future of Buyer Agency Agreements <span class="text_green">is ours to Reshape</span></h1>
+                <div class="text">MCL is at the forefront of innovation in a world where clarity and integrity in buyer-agent relationships are paramount. Our groundbreaking data-sharing software, designed to transform the Buyer Agency Agreement process, is not just adapting to the future; it's creating it. </div>
+                <div class="buttons-box d-flex align-items-center flex-wrap"> <a href="#keyfeatures_section" class="theme-btn btn-style-two"><span class="txt">Discover MCL</span></a> 
+                </div>
+              </div>
+            </div>
+            
+            
 
-        var OneSignal = OneSignal || [];
-        OneSignal.push(function() {
-            /* These examples are all valid */
-            // Occurs when the user's subscription changes to a new value.
-            OneSignal.on('subscriptionChange', function (isSubscribed) {
-                console.log("The user's subscription state is now:", isSubscribed);
-                OneSignal.sendTag("user_id","4444", function(tagsSent)
-                {
-                    // Callback called when tags have finished sending
-                    console.log("Tags have finished sending!");
-                });
-            });
+            <!-- Image Column -->
+            <div class="image-column col-xl-4 col-lg-4 col-md-12 col-sm-12">
+              <div class="inner-column">
+                <div class="shadow-layer-two" style="background-image: url(images/main-slider/shadow-layer.png)"></div>
+                <div class="border-one"></div>
+                <div class="border-two"></div>
+                <div class="image"> <img src="images/resource/contract.png" alt="" /> 
+                  <!-- Icon One --> 
+                  <span class="icon-one flaticon-131-pen"></span> 
+                  <!-- Icon Two --> 
+                  <span class="icon-two flaticon-153-document"></span> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Main Slider Section --> 
 
-            var isPushSupported = OneSignal.isPushNotificationsSupported();
-            if (isPushSupported)
-            {
-                // Push notifications are supported
-                OneSignal.isPushNotificationsEnabled().then(function(isEnabled)
-                {
-                    if (isEnabled)
-                    {
-                        console.log("Push notifications are enabled!");
 
-                    } else {
-                        OneSignal.showHttpPrompt();
-                        console.log("Push notifications are not enabled yet.");
-                    }
-                });
 
-            } else {
-                console.log("Push notifications are not supported.");
-            }
-        });
-    </script>
-<?php endif; ?>
-<?php if($page_name=='watch'): ?>
-    <!-- magnific popup -->
-    <script src="<?php echo base_url(); ?>assets/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.popup-youtube').magnificPopup({
-            type: 'iframe'
-          });
-        });
-    </script>
-<?php endif; ?>
+<!-- New-2 Agency Section Two -->
+  <section class="agency-section-two section_2">
+    <div class="vector-layer" style="background-image: url(images/background/pattern-9.png)"></div>
+    <div class="auto-container">
+      <div class="row clearfix"> 
+         <!-- Image Column -->
+        <div class="image-column col-lg-6 col-md-12 col-sm-12 order-2 order-lg-1">
+          <div class="inner-column">
+            <div class="row clearfix">
+              <div class="column col-lg-12 col-md-12 col-sm-12">
+                <div class="image wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms"> <img src="images/resource/overcoming_industry.jpg" alt="" /> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Column -->
+        <div class="content-column col-lg-6 col-md-12 col-sm-12 order-1 order-lg-2">
+          <div class="inner-column"> 
+            <!-- Sec Title -->
+            <div class="sec-title"> 
+              <h2>Overcoming <span class="text_green"> Industry  Obstacles </span></h2>
+            </div>
+            <div class="text">
+The real estate industry is grappling with a significant issue: a pervasive lack of transparency in buyer-agent relationships. This opacity leads to misunderstandings and unmet expectations, hampering transaction efficiency and eroding the market's integrity. Without standardized practices for Buyer Agency Agreements, this confusion undermines trust and ethical standards. This is where Multiple Clients List (MCL) steps in, with a mission to bridge this gap and ensure that every transaction is characterized by clarity and confidence. MCL is more than just a platform; it's a movement towards a future where transparency and trust redefine real estate transactions.</div>
+         
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Agency Section Two --> 
+
+
+<!-- New-3 Agency Section Two -->
+  <section class="agency-section-two bg section_3">
+    <div class="vector-layer" style="background-image: url(images/background/pattern-9.png)"></div>
+    <div class="auto-container">
+      <div class="row clearfix"> 
+
+                <!-- Content Column -->
+        <div class="content-column col-lg-6 col-md-12 col-sm-12">
+          <div class="inner-column"> 
+            <!-- Sec Title -->
+            <div class="sec-title"> 
+              <h2>Crafted by <span class="text_green">Agents, for Agents </span></h2>
+            </div>
+            <div class="text">
+At the heart of Multiple Clients List (MCL) lies a simple yet profound ethos: empower agents and introduce unparalleled transparency into the real estate industry. Born out of necessity and shaped by the hands of experienced real estate professionals, MCL is a testament to what happens when industry insiders take the helm to solve the problems they face daily.</div>
+         
+          </div>
+        </div>
+
+         <!-- Image Column -->
+        <div class="image-column col-lg-6 col-md-12 col-sm-12">
+          <div class="inner-column">
+            <div class="row clearfix">
+              <div class="column col-lg-12 col-md-12 col-sm-12">
+                <div class="image wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms"> <img src="images/resource/crafted_agent.jpg" alt="" /> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Agency Section Two --> 
+
+
+<!-- New-4 Agency Section Two -->
+  <section id="keyfeatures_section" class="agency-section-two keyfeatures">
+    <div class="vector-layer" style="background-image: url(images/background/pattern-9.png)"></div>
+    <div class="auto-container">
+      <div class="row clearfix"> 
+
+                <!-- Content Column -->
+        <div class="content-column col-lg-12 col-md-12 col-sm-12">
+          <div class="inner-column"> 
+            <!-- Sec Title -->
+            <div class="sec-title"> 
+              <h2 class="text-center">Key Features & <span class="text_green"> Unparalleled Benefits </span></h2>
+            </div>
+            <div class="text">Multiple Clients List (MCL) introduces innovative features designed to empower real estate agents, brokers, and buyers with the tools they need for success. Each feature is built precisely, enhancing transparency, efficiency, and ethical standards within the buyer-agent relationship. Here's how our platform stands out:          </div>
+
+<div class="keyfeatures_list_content">
+<div class="text">
+<h3 class="text-center mt-5 mb-5">Key Features & Benefits</h3>
+<div class="d-flex">
+<div class="col-sm-3 inner-box">
+<div class="col_header"><h4 class="text-center">Active Buyer <br> Agreement Verification</h4></div>
+<div class="box_content">
+<p class="point feature"><strong>Feature</strong></p>
+<p>Instantly verify the status of a prospective buyer's agreement, ensuring respect for existing relationships.</p>
+<p class="point benefit"><strong>Benefit</strong></p>
+<p> Promotes ethical practices by preventing conflicts of interest, fostering a culture of respect and trust among agents and buyers.</p>
+</div>
+</div>
+
+<div class="col-sm-3 inner-box">
+<div class="col_header"><h4 class="text-center">Buyer History <br> Tracking</h4></div>
+<div class="box_content">
+<p class="point feature"><strong>Feature</strong> </p>
+<p>Create a detailed record of a buyer's history, including past purchase attempts and interactions with agents.</p>
+<p class="point benefit"><strong>Benefit</strong></p>
+<p> Offers valuable insights into buyer behavior, enabling agents to tailor their approach and improve the chances of successful transactions.</p>
+</div>
+</div>
+
+<div class="col-sm-3 inner-box">
+<div class="col_header"><h4 class="text-center"> Office Metrics <br> and Tracking</h4></div>
+<div class="box_content">
+<p class="point feature"><strong>Feature</strong></p>
+<p> Monitor the performance of your brokerage by tracking the number and status of Buyer Agreements.</p>
+<p class="point benefit"><strong>Benefit</strong></p>
+<p>Provides real-time data to help brokers make informed decisions, improve office performance, and strategize for future growth.</p>
+</div>
+</div>
+
+<div class="col-sm-3 inner-box">
+<div class="col_header"><h4 class="text-center">Market-Specific <br> Buyer Availability</h4></div>
+<div class="box_content">
+<p class="point feature"><strong>Feature</strong></p>
+<p> Access anonymized data on buyer availability and price range preferences within specific markets.</p>
+<p class="point benefit"><strong>Benefit</strong></p>
+<p> Enhances listing presentations by equipping agents with market-specific insights, improving matchmaking between buyers and properties without compromising privacy.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+   
+         
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Agency Section Two --> 
+
+
+
+
+<!-- Brand Logo Slider Section Two -->
+  <section class="Brand-section-two">
+    <div class="vector-layer" style="background-image: url(images/background/pattern-4.png)"></div>
+    <div class="auto-container"> 
+      
+      <!-- Sec Title -->
+      <h2 class="text-center mb-5">Trusted by agents</h2>
+
+      <div class="five-item-carousel owl-carousel owl-theme"> 
+        
+        <!-- Brand Block Two -->
+        <div class="Brand-block-two">
+          <div class="inner-box">
+            <div class="image"><img src="images/brand-logo/1.png" alt="brand-logo 1"></div>
+          </div>
+        </div>
+        <!-- Brand Block Two -->
+        <div class="Brand-block-two">
+          <div class="inner-box">
+            <div class="image"><img src="images/brand-logo/2.png" alt="brand-logo 2"></div>
+          </div>
+        </div>
+        
+        <!-- Brand Block Two -->
+        <div class="Brand-block-two">
+          <div class="inner-box">
+            <div class="image"><img src="images/brand-logo/3.png" alt="brand-logo 3"></div>
+          </div>
+        </div>
+        
+        <!-- Brand Block Two -->
+        <div class="Brand-block-two">
+          <div class="inner-box">
+            <div class="image"><img src="images/brand-logo/4.png" alt="brand-logo 4"></div>
+          </div>
+        </div>
+
+          <!-- Brand Block Two -->
+        <div class="Brand-block-two">
+          <div class="inner-box">
+            <div class="image"><img src="images/brand-logo/5.png" alt="brand-logo 5"></div>
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+  <!-- End Logo Slider  Section Two --> 
+  
+
+  <section id="pricing" class="pricing_section">
+  <div class="auto-container">
+  <div class="sec-title"> <h2 class="text-center">Choose Pricing Plan</h2></div>
+  
+  <div class="pricing_content">
+           <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+<stripe-pricing-table pricing-table-id="prctbl_1NkSv9COCphm4NQSdEeXTqJ4"
+publishable-key="pk_live_51NjTJzCOCphm4NQS9Bzc8Y3eoJQydYB8sruMazEZwUHqv6YXF5lcV1OSkzeo4QUkvNpQOTwefAAfTE68eWjfksCB00W05FwdY1">
+</stripe-pricing-table>
+  </div>
+  </div>
+  </section>
+  
+  <section class="Faq agency-section-two ">
+
+<div class="container">
+        <div style="margin-left: 5%;"> 
+        <h3>FAQ's</h3>
+        
+            <div class="row gy-4">
+        <div class="accordion">
+                
+                  <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                    <button id="accordion-button-2" aria-expanded="false">
+                      <span class="accordion-title"> Can I cancel my subscription at any time? </span>
+                      <span class="icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-content text">
+                   Yes, all of our paid plans are month-to-month and you can cancel at any time. 
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                    <button id="accordion-button-3" aria-expanded="false">
+                      <span class="accordion-title"> Will my data be shared with any third parties? </span>
+                      <span class="icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-content text">
+                    Absolutely not. We never sell or share client data with any third parties. Data privacy and security is our top priority. 
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                    <button id="accordion-button-4" aria-expanded="false">
+                      <span class="accordion-title"> Does buyer information get shared with other agents? </span>
+                      <span class="icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-content text">
+                     Absolutely not. Our platform keeps all buyer data, agreements, and insights private to your account by default. Buyer agreements are only viewable if the same buyer explicitly shares their information with another agent, and then that agent could search in the database. 
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                    <button id="accordion-button-5" aria-expanded="false">
+                      <span class="accordion-title"> Can MCL integrate with e-signature providers? </span>
+                      <span class="icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="accordion-content text">
+                    Yes, we offer seamless integrations with major e-signature platforms like DocuSign and Dotloop. More coming soon! 
+                    </div>
+                  </div>
+                </div>
+        </div>
+
+      </div>
+      </div>
+  </section>
+
+
+  <section id="contact" style="background-image: url(images/background/pattern-9.png)" class="contact bg mt-5 pt-5 agency-section-two">
+
+      <div class="container">
+        
+        <div class="row gy-5 gx-lg-5">
+        <h4 class="text-center fs-1">Get in Touch</h4>
+             
+         <div class="col-lg-2">
+        </div>
+          <div class="col-lg-8">
+            <form method="POST" class="php-email-form" action="#">
+              <div class="row">
+                <div class="col-md-6 form-group mt-3">
+                  <input type="text" name="fullname" placeholder="Full Name *" class="form-control" required="">
+                </div>
+                <div class="col-md-6 form-group mt-3">
+                  <input type="email" name="email" placeholder="Email *" class="form-control" required="">
+                </div>
+         <div class="col-md-6 form-group mt-3">
+                <input type="text" name="phone_number" placeholder="Phone Number *" class="form-control" required="">
+              </div>
+              <div class="col-md-6 form-group mt-3">
+                <input type="text" placeholder="Office" class="form-control" required="">
+              </div>
+              </div>
+        
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" placeholder="Message *" required=""></textarea>
+              </div>
+              
+              <!--
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+             --> 
+              <div class="my-3"></div>
+              <div class="text-center"><button type="submit" class="theme-btn btn-style-two"> <span class="txt"> Send Message </span></button></div>
+            </form>
+          </div><!-- End Contact Form -->
+        <div class="col-lg-2">
+        </div>    
+        <!--
+        <div class="col-lg-4">
+            <h4>Contact Details</h4>
+            
+             <i class="fa fa-envelope-open" aria-hidden="true"></i><a style="color:#777777" href="mailto:support@multipleclientlist">
+                           
+                            support@multipleclientlist.com
+                        </a>
+                       
+            <div class="social-links mt-3">
+             
+              <a href="https://www.facebook.com/multipleclientlist" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.instagram.com/multipleclientslist/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+             
+            </div>
+     </div>
+        -->
+        
+        
+        </div>
+
+      </div>
+    </section>
+<script>
+const items = document.querySelectorAll('.accordion button');
+
+function toggleAccordion() {
+  const itemToggle = this.getAttribute('aria-expanded');
+
+  if (itemToggle === 'true') {
+    this.setAttribute('aria-expanded', 'false');
+  } else {
+    this.setAttribute('aria-expanded', 'true');
+  }
+}
+
+items.forEach((item) => {
+  item.addEventListener('click', function() {
+    toggleAccordion.call(this);
+  });
+
+  // Adding double-click event listener to close accordion content
+  item.addEventListener('dblclick', function() {
+    this.setAttribute('aria-expanded', 'false');
+  });
+});
+
+</script>
+
+<?php include 'footer.php';?>
 </body>
 </html>

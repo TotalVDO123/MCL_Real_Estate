@@ -47,5 +47,41 @@ class Page extends Home_Core_Controller{
         $data['page_name']='about';
         $this->load->view('theme/'.$this->active_theme.'/index',$data);
     }
+	
+	
+	public function privacy_policy()
+	{
+        		
+		$data['title'] = 'Privacy Policy';
+        $data['page_name']='privacy-policy';
+        //$this->load->view('theme/'.$this->active_theme.'/index',$data);
+		
+		$this->load->view('theme/'.$this->active_theme.'/privacy_policy',$data);
+    }
+	
+	
+	public function terms_and_condition()
+	{
+        		
+		$data['title'] = 'Terms and Condition';
+        //$data['page_name']='privacy-policy';
+        //$this->load->view('theme/'.$this->active_theme.'/index',$data);
+		
+		$this->load->view('theme/'.$this->active_theme.'/terms-and-condition.php',$data);
+    }
+	
+	
+	public function web_accessibility()
+	{
+		//$data['title'] = 'Terms and Condition';
+        //$data['page_name']='privacy-policy';
+        //$this->load->view('theme/'.$this->active_theme.'/index',$data);
+		$this->load->view('theme/'.$this->active_theme.'/web-accessibility.php',$data);
+    }
+	
+	
+	
+	
+	
 }
 
